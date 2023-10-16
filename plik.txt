@@ -1,2 +1,2 @@
 Hello World! 
-to now linia z fixa
+mod w branchu dev
