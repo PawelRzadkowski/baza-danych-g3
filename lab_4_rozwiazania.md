@@ -73,4 +73,4 @@ dodatek varchar(60) default "papryczka chilli",
 id_konsumenta int,
 FOREIGN KEY (id_wykonawcy) references postac(id_postaci),
 FOREIGN KEY (id_konsumenta) references postac(id_postaci)
-);
+); !DODAJ TABLE PRZETWORY
