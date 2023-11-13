@@ -127,4 +127,4 @@ DELETE FROM izba where adres_budynku = "spizarniowa";
 
 ZAD5.podpunkt 9
 DROP TABLE izba;
-````
+````sql
