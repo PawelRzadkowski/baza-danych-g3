@@ -23,7 +23,8 @@ SELECT *  FROM osoba;
 ````
 
 Kod umieszczany liniowo.Polecenie `SELECT` oznacza wybranie danych z bazy
-
+````sql
+ZAD1.
 create table postac (
 id_postaci int primary key auto_increment,
 nazwa varchar(40),
@@ -126,4 +127,4 @@ DELETE FROM izba where adres_budynku = "spizarniowa";
 
 ZAD5.podpunkt 9
 DROP TABLE izba;
-
+````
