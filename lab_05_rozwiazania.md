@@ -17,4 +17,6 @@ UPDATE postac SET pesel="12345678901" + id_postaci;
 ALTER TABLE postac add primary key(pesel);
 
 ALTER TABLE postac modify rodzaj enum("wiking","ptak","kobieta","syrena");
+INSERT into postac values("12341234123","60","Gertruda_nieszczera","syrena","768-05-05","567",NULL,NULL);
+
 ````sql
