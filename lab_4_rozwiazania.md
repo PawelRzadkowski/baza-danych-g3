@@ -51,6 +51,7 @@ ALTER TABLE walizka alter kolor set default "rozowy";
 
 INSERT INTO walizka values (NULL,10,NULL,1) , INSERT INTO walizka(pojemnosc,id_wlasciciela) values (20,3);
 
+ZAD 3.
 CREATE TABLE izba (
 adres_budynku varchar(50),
 nazwa_izby varchar(60),
@@ -63,14 +64,66 @@ foreign key (wlasciciel) references postac(id_postaci) on delete set null
 ALTER TABLE izba ADD kolor_izby varchar(40) after metraz;
 ALTER TABLE izba alter kolor_izby set default "czarny";
 INSERT INTO izba values("domowa","dom",20,default,1);
+INSERT INTO izba values("spizarniowa","spizarnia","30","czarny","1");
 
-CREATE TABLE przetwory (
+ZAD4.
+CREATE TABLE przetwory ( 
 id_przetworu int primary key,
-rok_produkcji YEAR default=1654,
-id_wykonawcy int,
-zawartosc varchar(60),
-dodatek varchar(60) default "papryczka chilli",
-id_konsumenta int,
-FOREIGN KEY (id_wykonawcy) references postac(id_postaci),
-FOREIGN KEY (id_konsumenta) references postac(id_postaci)
-); !DODAJ TABLE PRZETWORY
+ rok_produkcji YEAR,
+ id_wykonawcy int,
+ zawartosc varchar(60),
+ dodatek varchar(60) ,
+ id_konsumenta int,
+ FOREIGN KEY (id_wykonawcy) references postac(id_postaci),
+ FOREIGN KEY (id_konsumenta) references postac(id_postaci) ); 
+
+ ALTER TABLE przetwory alter rok_produkcji set default 1654;
+ ALTER TABLE przetwory alter dodatek set default "papryczka chilli";
+ INSERT INTO przetwory values(1,"2050","1","bigos",default,"3");
+
+ZAD5.podpunkt 1
+  INSERT INTO postac values(
+ (NULL , "Asgard","wiking","1678-08-12",20),
+ (NULL, "Khorad","wiking","1864-03-12",30),
+ (NULL, "Gorn","wiking","1864-03-16",40),
+ (NULL, "Diego","wiking","1864-03-22",50),
+ (NULL, "Gomez","wiking","1864-03-12",60)
+);
+
+ZAD5.podpunkt 2
+CREATE TABLE statek (
+ nazwa_statku varchar(50) primary key,
+ rodzaj_statku enum("kajak","statek","kuter","lodz"),
+ data_wodowania DATE,
+ max_ladownosc int unsigned
+);
+
+ZAD5.podpunkt 3
+INSERT INTO statek values("swieta_anna","statek","1754-09-09","3000");
+INSERT INTO statek values("czarna_perla","statek","1785-06-06","2000");
+
+ZAD5.podpunkt 4
+ALTER TABLE postac ADD funkcja varchar(70);
+
+ZAD5.podpunkt 5
+UPDATE postac set funkcja="kapitan" where id_postaci ="1";
+
+ZAD5.podpunkt 6
+ALTER TABLE postac ADD nazwa_statku varchar(50);
+ALTER TABLE postac ADD FOREIGN KEY (nazwa_statku) references statek(nazwa_statku) on delete set null;
+
+ZAD5.podpunkt 7
+UPDATE postac set nazwa_statku="czarna_perla" WHERE id_postaci="1";
+UPDATE postac set nazwa_statku="swieta_anna" WHERE id_postaci=2;
+UPDATE postac set nazwa_statku="swieta_anna" WHERE id_postaci=4;
+UPDATE postac set nazwa_statku="swieta_anna" WHERE id_postaci=5;
+UPDATE postac set nazwa_statku="swieta_anna" WHERE id_postaci=6;
+UPDATE postac set nazwa_statku="swieta_anna" WHERE id_postaci=7;
+UPDATE postac set nazwa_statku="swieta_anna" WHERE id_postaci=8;
+
+ZAD5.podpunkt 8
+DELETE FROM izba where adres_budynku = "spizarniowa";
+
+ZAD5.podpunkt 9
+DROP TABLE izba;
+
