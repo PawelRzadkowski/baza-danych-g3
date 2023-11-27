@@ -16,7 +16,7 @@ b)SELECT * FROM zasob WHERE waga between 2 AND 5;
 c)SELECT * FROM kreatura WHERE nazwa LIKE "%or%" AND waga between 30 AND 70;
 
 ZAD 3.
-a)SELECT * FROM zasob WHERE dataPozyskania LIKE  "____-08-__" OR dataPozyskania LIKE "____-07-__";
+a)SELECT * FROM zasob WHERE MONTH(dataPozyskania) between 7 AND 8;
 b)SELECT * FROM zasob WHERE rodzaj is NOT NULL order by waga asc;
 c)SELECT * FROM kreatura WHERE dataUr is not null order by dataUr asc LIMIT 5;
 
