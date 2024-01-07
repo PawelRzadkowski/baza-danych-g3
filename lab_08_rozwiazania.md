@@ -7,12 +7,15 @@ CREATE TABLE wyprawa SELECT * FROM wikingowie.wyprawa;
 
 b)SELECT nazwa FROM kreatura WHERE kreatura.nazwa not in(SELECT distinct kreatura.nazwa from kreatura,uczestnicy,wyprawa WHERE kreatura.idKreatury = uczestnicy.id_uczestnika);
 
-c)
+c) SELECT wyprawa.nazwa, FROM kreatura LEFT JOIN 
 
 ZAD2.
-a)
+a) SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.nazwa) AS 'imiona_uczestnikow' FROM uczestnicy LEFT JOIN wyprawa 
+ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy LEFT JOIN kreatura ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
 
-b)
+b) SELECT etapy_wyprawy.dziennik, sektor.nazwa, wyprawa.data_rozpoczecia, wyprawa.kierownik FROM wyprawa LEFT JOIN etapy_wyprawy 
+ON etapy_wyprawy.idWyprawy=wyprawa.id_wyprawy LEFT JOIN sektor ON etapy_wyprawy.sektor=sektor.id_sektora ORDER BY wyprawa.data_rozpoczecia, etapy_wyprawy.kolejnosc;
+
 ZAD3.
 a) SELECT ew.sektor ,count(ew.sektor) from etapy_wyprawy ew inner join sektor s on ew.sektor=s.id_sektora group by sektor;
 
