@@ -7,7 +7,7 @@ CREATE TABLE wyprawa SELECT * FROM wikingowie.wyprawa;
 
 b)SELECT nazwa FROM kreatura WHERE kreatura.nazwa not in(SELECT distinct kreatura.nazwa from kreatura,uczestnicy,wyprawa WHERE kreatura.idKreatury = uczestnicy.id_uczestnika);
 
-c) SELECT wyprawa.nazwa, FROM kreatura LEFT JOIN 
+c) SELECT wyprawa.nazwa,ekwipunek.ilosc FROM wyprawa LEFT JOIN uczestnicy on wyprawa.id_wyprawy = uczestnicy.id_wyprawy LEFT JOIN kreatura on uczestnicy.id_uczestnika = kreatura.Idkreatury left join ekwipunek on kreatura.idkreatury = ekwipunek.idekwipunku group by wyprawa.nazwa;
 
 ZAD2.
 a) SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.nazwa) AS 'imiona_uczestnikow' FROM uczestnicy LEFT JOIN wyprawa 
@@ -30,5 +30,9 @@ count(distinct id_uczestnika) ile_dobrze,
 sum(e.ilosc * z.waga) suma_wagi,
 sum(e.ilosc*z.waga) /count(distinct u.id_uczestnika) avg_dobre,
 sum(e.ilosc * z.waga) /count(u.id_uczestnika) avg_zle
-FROM uczestnicy unionINNER JOIN ekwipunek e on u.id  .....
+FROM uczestnicy unionINNER JOIN ekwipunek e on u.id_uczestnika = e.idekwipunku inner join wyprawa w on u.id_wyprawy=w.id_wyprawy group by w.nazwa;
+
+ZAD 5.
+a) SELECT kreatura.nazwa,DATEDIFF(day,kreatura.dataUr,wyprawa.data_rozpoczecia) as roznica FROM etapy_wyprawy LEFT JOIN wyprawa on etapy_wyprawy.id_wyprawy = wyprawa.id_wyprawy LEFT JOIN uczestnicy ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy LEFT JOIN kreatura on uczestnicy.id_uczestnika = kreatura.idKreatury
+group by kreatura.nazwa having ..
 ````
